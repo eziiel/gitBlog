@@ -7,10 +7,24 @@ interface ContextDataType {
   bio: string
   followers: string
   company: string
+  html_url: string
 }
 
+interface User {
+  login: string
+  company: string
+}
+interface IssuesDataType {
+  user: User
+  number: number
+  title: string
+  body: string
+  updated_at: string
+  html_url: string
+}
 interface ContextIssues {
   userData: ContextDataType
+  dataIssues: IssuesDataType[]
 }
 
 export const ContextDataIssues = React.createContext({} as ContextIssues)
@@ -25,32 +39,58 @@ const initContextIssue = {
   bio: '',
   followers: '',
   company: '',
+  html_url: '',
 }
 
 export const ContextDataIssuesProvider = ({ children }: ChildreType) => {
   const [userData, setUserData] =
     React.useState<ContextDataType>(initContextIssue)
+  const [dataIssues, setDataIssues] = React.useState<IssuesDataType[]>([])
 
   const userApiGetDataIssues = React.useCallback(async () => {
     const response = await api.get('/users/eziiel')
 
     const user = {
       login: response.data.login,
+      company: response.data.company,
       avatarUrl: response.data.avatar_url,
       bio: response.data.bio,
       followers: response.data.followers,
-      company: response.data.company,
+      html_url: response.data.html_url,
     }
 
     setUserData(user)
+  }, [])
+
+  const DataIssuesGitHub = React.useCallback(async () => {
+    const response = await api.get('/repos/eziiel/gitBlog/issues')
+
+    const issue = response.data.map((item: IssuesDataType) => {
+      return {
+        user: {
+          login: item.user.login,
+          company: item.user.company,
+        },
+        number: item.number,
+        title: item.title,
+        body: item.body,
+        updated_at: item.updated_at,
+        html_url: item.html_url,
+      }
+    })
+    setDataIssues(issue)
   }, [])
 
   React.useEffect(() => {
     userApiGetDataIssues()
   }, [userApiGetDataIssues])
 
+  React.useEffect(() => {
+    DataIssuesGitHub()
+  }, [DataIssuesGitHub])
+
   return (
-    <ContextDataIssues.Provider value={{ userData }}>
+    <ContextDataIssues.Provider value={{ userData, dataIssues }}>
       {children}
     </ContextDataIssues.Provider>
   )

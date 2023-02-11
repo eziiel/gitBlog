@@ -33,6 +33,7 @@ export const IssuesNav = styled.div`
     font-weight: 500;
     font-size: 1.125rem;
     color: ${(props) => props.theme['blue-100']};
+    border-radius: 10px;
   }
 `
 
@@ -48,6 +49,12 @@ export const IssueLinks = styled.div`
   gap: 3rem;
 `
 export const InfoIconsIssue = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+export const InfoIconsIssueTime = styled.time`
   display: flex;
   align-items: center;
   gap: 0.5rem;

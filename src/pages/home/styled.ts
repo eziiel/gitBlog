@@ -26,7 +26,6 @@ export const HomePerfilImage = styled.img`
   width: 148px;
   height: 148px;
   border-radius: 10px;
-  background: red;
 `
 
 export const HomePerfilData = styled.div`
@@ -57,6 +56,7 @@ export const HomePerfilGitLogo = styled.a`
   text-transform: uppercase;
   font-size: 0.875rem;
   padding: 0.5rem;
+  border-radius: 10px;
 `
 
 export const HomePerfilBio = styled.p`
@@ -78,7 +78,8 @@ export const InfoIconsPerfil = styled.div`
 
 export const CardsContainer = styled.section`
   margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
   gap: 2rem;
 `

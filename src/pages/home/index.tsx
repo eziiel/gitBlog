@@ -11,7 +11,7 @@ import { FormSearchIssues } from './components/form'
 import { ContextDataIssues } from '../../context'
 
 export const Home = () => {
-  const { userData } = React.useContext(ContextDataIssues)
+  const { userData, dataIssues } = React.useContext(ContextDataIssues)
 
   return (
     <S.HomeContainer>
@@ -20,10 +20,7 @@ export const Home = () => {
         <S.HomePerfilData>
           <S.HomePerfilNameLink>
             <S.HomePerfilTitle>{userData.login}</S.HomePerfilTitle>
-            <S.HomePerfilGitLogo
-              href="https://github.com/eziiel"
-              target="_blank"
-            >
+            <S.HomePerfilGitLogo href={userData.html_url} target="_blank">
               GitHub
               <ArrowSquareOut size={20} />
             </S.HomePerfilGitLogo>
@@ -48,32 +45,16 @@ export const Home = () => {
 
       <FormSearchIssues />
 
-      {/* <S.CardsContainer>
-        {dataTeste.map((item) => (
+      <S.CardsContainer>
+        {dataIssues.map((item) => (
           <CartIssus
-            key={item.title}
+            key={item.number}
             title={item.title}
-            time={String(item.time)}
-            text={item.text}
+            time={item.updated_at}
+            text={item.body}
+            number={item.number}
           />
         ))}
-      </S.CardsContainer> */}
-      <S.CardsContainer>
-        <CartIssus
-          title="JavaScript data types and data structures"
-          time={new Date().toISOString()}
-          text="Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.',"
-        />
-        <CartIssus
-          title="uauauauuaauauauauauau"
-          time="ha 3dias"
-          text="Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.',"
-        />
-        <CartIssus
-          title="JavaScript data types and data structures"
-          time="ha 3dias"
-          text="Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.',"
-        />
       </S.CardsContainer>
     </S.HomeContainer>
   )

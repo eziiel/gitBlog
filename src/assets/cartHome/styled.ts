@@ -14,7 +14,7 @@ export const CardContainer = styled.div`
 
     display: grid;
     gap: 2rem;
-    grid-template-columns: 1fr 100px;
+    grid-template-columns: 1fr 1fr;
     padding: 2.5rem 1.5rem;
   }
 `
@@ -26,7 +26,7 @@ export const TitleCart = styled.h1`
   font-size: 1.125rem;
 `
 
-export const TimeCard = styled.div`
+export const TimeCard = styled.time`
   grid-row: 1;
   grid-column: 2;
   color: ${(props) => props.theme['white-300']};
@@ -35,7 +35,7 @@ export const TimeCard = styled.div`
   justify-self: end;
 `
 
-export const TextCard = styled.p`
+export const TextCard = styled.div`
   grid-row: 2;
   grid-column: 1 / -1;
   color: ${(props) => props.theme['white-300']};
