@@ -25,6 +25,8 @@ interface IssuesDataType {
 interface ContextIssues {
   userData: ContextDataType
   dataIssues: IssuesDataType[]
+  dataIssuesSearch: IssuesDataType[]
+  searchIssue: (data: string) => void
 }
 
 export const ContextDataIssues = React.createContext({} as ContextIssues)
@@ -46,6 +48,9 @@ export const ContextDataIssuesProvider = ({ children }: ChildreType) => {
   const [userData, setUserData] =
     React.useState<ContextDataType>(initContextIssue)
   const [dataIssues, setDataIssues] = React.useState<IssuesDataType[]>([])
+  const [dataIssuesSearch, setDataIssuesSearch] = React.useState<
+    IssuesDataType[]
+  >([])
 
   const userApiGetDataIssues = React.useCallback(async () => {
     const response = await api.get('/users/eziiel')
@@ -89,8 +94,22 @@ export const ContextDataIssuesProvider = ({ children }: ChildreType) => {
     DataIssuesGitHub()
   }, [DataIssuesGitHub])
 
+  const searchIssue = (data: string) => {
+    const issueSearchResult = dataIssues.filter((issue) =>
+      issue.title.startsWith(data),
+    )
+    setDataIssuesSearch(issueSearchResult)
+  }
+
   return (
-    <ContextDataIssues.Provider value={{ userData, dataIssues }}>
+    <ContextDataIssues.Provider
+      value={{
+        userData,
+        dataIssues,
+        searchIssue,
+        dataIssuesSearch,
+      }}
+    >
       {children}
     </ContextDataIssues.Provider>
   )

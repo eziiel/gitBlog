@@ -11,8 +11,10 @@ import { FormSearchIssues } from './components/form'
 import { ContextDataIssues } from '../../context'
 
 export const Home = () => {
-  const { userData, dataIssues } = React.useContext(ContextDataIssues)
+  const { userData, dataIssues, dataIssuesSearch } =
+    React.useContext(ContextDataIssues)
 
+  const issues = dataIssuesSearch.length > 0 ? dataIssuesSearch : dataIssues
   return (
     <S.HomeContainer>
       <S.HomePerfil>
@@ -46,7 +48,7 @@ export const Home = () => {
       <FormSearchIssues />
 
       <S.CardsContainer>
-        {dataIssues.map((item) => (
+        {issues.map((item) => (
           <CartIssus
             key={item.number}
             title={item.title}

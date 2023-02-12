@@ -45,4 +45,10 @@ export const TextCard = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+
+  p,
+  pre,
+  code {
+    width: 100%;
+  }
 `

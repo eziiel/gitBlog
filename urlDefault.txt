@@ -5,5 +5,11 @@
 - pega todas issues de um repositório:
     https://api.github.com/repos/eziiel/gitBlog/issues
 - pega todas issues: 
-    https://api.github.com/search/issues?q=user:eziiel
+    https://api.github.com/search/issues?q=user:eziiel 
+- pega issues específicas: 
+    https://api.github.com/search/issues?q= teste eziiel/gitblog
 - 
+
+
+https://api.github.com/search/issues?q=teste repo:eziiel/gitblog
+https://api.github.com/search/issues?q=teste repo:eziiel/gitblog

@@ -61,5 +61,13 @@ export const InfoIconsIssueTime = styled.time`
 `
 
 export const IssueSection = styled.section`
-  padding: 2rem 1rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+
+  pre {
+    padding: 1rem;
+    background: ${(props) => props.theme['blue-400']};
+    border-radius: 10px;
+    margin: 2rem 0;
+  }
 `
