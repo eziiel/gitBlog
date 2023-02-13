@@ -68,7 +68,7 @@ export const ContextDataIssuesProvider = ({ children }: ChildreType) => {
   }, [])
 
   const DataIssuesGitHub = React.useCallback(async () => {
-    const response = await api.get('/repos/eziiel/gitBlog/issues')
+    const response = await api.get('/repos/eziiel/gitBlog/issues?sort=created')
 
     const issue = response.data.map((item: IssuesDataType) => {
       return {
@@ -96,7 +96,7 @@ export const ContextDataIssuesProvider = ({ children }: ChildreType) => {
 
   const searchIssue = (data: string) => {
     const issueSearchResult = dataIssues.filter((issue) =>
-      issue.title.startsWith(data),
+      issue.title.toLocaleLowerCase().startsWith(data.toLocaleLowerCase()),
     )
     setDataIssuesSearch(issueSearchResult)
   }

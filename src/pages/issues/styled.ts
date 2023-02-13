@@ -64,10 +64,25 @@ export const IssueSection = styled.section`
   margin: 2rem 0;
   padding: 2rem 0;
 
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  a {
+    color: ${(props) => props.theme['blue-100']};
+  }
+
+  code {
+    background: ${(props) => props.theme['blue-400']};
+    padding: 2px;
+    border-radius: 5px;
+  }
+
   pre {
     padding: 1rem;
     background: ${(props) => props.theme['blue-400']};
     border-radius: 10px;
     margin: 2rem 0;
+    line-height: 1.5;
   }
 `

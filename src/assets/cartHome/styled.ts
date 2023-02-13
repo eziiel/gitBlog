@@ -1,22 +1,17 @@
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(NavLink)`
   max-width: 416px;
   border-radius: 10px;
   background: ${(props) => props.theme['blue-500']};
 
   cursor: pointer;
 
-  a {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr 1fr;
-    padding: 2.5rem 1.5rem;
-  }
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  padding: 2.5rem 1.5rem;
 `
 
 export const TitleCart = styled.h1`
