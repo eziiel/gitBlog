@@ -9,6 +9,9 @@
   > This project aims to simulate the blog for github - I adapted it to post
   questions/code exercises in general that I respond to, keeping them as issues
 
+  </br>
+
+  >This project will always be updated because as I practice exercises I insert the resolutions
   
 </p>
 
