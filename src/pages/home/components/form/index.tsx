@@ -13,13 +13,16 @@ type SearchFormInput = z.infer<typeof searchSchema>
 
 export const FormSearchIssues = () => {
   const [watchIssue, setWatchIssue] = React.useState('')
-  const { searchIssue } = React.useContext(ContextDataIssues)
+  const { searchIssue, dataIssues, dataIssuesSearch } =
+    React.useContext(ContextDataIssues)
+
   const { register, handleSubmit, watch } = useForm<SearchFormInput>({
     resolver: zodResolver(searchSchema),
     defaultValues: {
       query: '',
     },
   })
+
   const handleSubmitInput = () => {
     searchIssue(watch().query)
 
@@ -37,11 +40,13 @@ export const FormSearchIssues = () => {
     setWatchIssue(DataLocal)
   }, [])
 
+  const issues = dataIssuesSearch.length > 0 ? dataIssuesSearch : dataIssues
+
   return (
     <S.FormContainer onChange={handleSubmit(handleSubmitInput)}>
       <S.FormInfo>
         <S.FormTitle>Publicações</S.FormTitle>
-        <S.FormInfoIssue>6 publicações</S.FormInfoIssue>
+        <S.FormInfoIssue>{issues.length} publicações</S.FormInfoIssue>
       </S.FormInfo>
       <S.FormInput
         value={watchIssue}
